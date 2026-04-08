@@ -44,14 +44,15 @@ def maxSubarraySum(arr, k):
     for high in range(k):
         window_sum += arr[high]
 
-    max_sum = window_sum  # initialize max_sum properly
+    max_sum = window_sum
 
     # Sliding window
     while high < n - 1:
-        high += 1
-        window_sum += arr[high]   # add next element
-        window_sum -= arr[low]    # remove previous element
         low += 1
+        high += 1
+
+        window_sum += arr[high]      # add next element
+        window_sum -= arr[low - 1]   # remove previous element (correct usage)
 
         max_sum = max(max_sum, window_sum)
 
